@@ -81,10 +81,9 @@ CREATE TABLE solicitudes(
 
 CREATE TABLE solicitudes_presentadas(
 	cedula_pasajero CHAR(10) REFERENCES pasajeros(cedula_pasajero),
-	cedula_empleado CHAR(10) REFERENCES empleados(cedula_empleado),
 	id_estacion INTEGER REFERENCES estaciones(id_estacion),
 	tiquete INTEGER REFERENCES solicitudes(tiquete),
-	CONSTRAINT pk_solicitudes_presentadas PRIMARY KEY(cedula_pasajero, cedula_empleado, id_estacion, tiquete));
+	CONSTRAINT pk_solicitudes_presentadas PRIMARY KEY(cedula_pasajero, id_estacion, tiquete));
 
 CREATE TABLE conduce(
 	cedula_empleado CHAR(10) REFERENCES empleados(cedula_empleado),
@@ -112,6 +111,14 @@ CREATE TABLE bus_abordado(
 	id_ruta INTEGER REFERENCES rutas(id_ruta),
 	fecha_abordaje TIMESTAMP NOT NULL,
 	CONSTRAINT pk_abordaje PRIMARY KEY(pin_tarjeta, id_ruta, fecha_abordaje));
+	
+CREATE TABLE recargas(
+	pin_tarjeta INTEGER REFERENCES tarjetas(pin_tarjeta),
+	cedula_empleado CHAR(10) REFERENCES empleados(cedula_empleado),
+	cantidad_recargas INTEGER NOT NULL,
+	fecha_recarga TIMESTAMP WITHOUT TIME ZONE,
+	CONSTRAINT pk_abordaje PRIMARY KEY(pin_tarjeta, cedula_empleado, fecha_recarga)
+	);
 
 INSERT INTO cargos VALUES(1, 'Conductor');
 INSERT INTO cargos VALUES(2, 'Director operativo');
@@ -274,10 +281,10 @@ INSERT INTO tarjeta_personalizada VALUES(2,0,'0000000002',2);
 INSERT INTO tarjeta_personalizada VALUES(3,0,'0000000003',3);
 INSERT INTO tarjeta_personalizada VALUES(4,0,'0000000004',1);
 
-INSERT INTO solicitudes VALUES(1,'',FALSE,'Daños en la estación /-/ Las puertas no abren','1111111111');
-INSERT INTO solicitudes VALUES(2,'',FALSE,'Daños en los buses /-/ El bus AAA111 no tiene aire acondicionado','1111111111');
-INSERT INTO solicitudes VALUES(3,'',FALSE,'No hay sistema /-/ Esperé 30 minutos para recargar por que no había sistema','1111111114');
-INSERT INTO solicitudes VALUES(4,'Se informa al vendedor de su actitud. Se remite a psicología',True,'Actitud del empleado /-/ La actitud del empleado Augusto con cédula 1111111146 no es la adecuada','1111111112');
+INSERT INTO solicitudes VALUES(1,'',FALSE,'DaÃ±os en la estaciÃ³n /-/ Las puertas no abren','1111111111');
+INSERT INTO solicitudes VALUES(2,'',FALSE,'DaÃ±os en los buses /-/ El bus AAA111 no tiene aire acondicionado','1111111111');
+INSERT INTO solicitudes VALUES(3,'',FALSE,'No hay sistema /-/ EsperÃ© 30 minutos para recargar por que no habÃ­a sistema','1111111114');
+INSERT INTO solicitudes VALUES(4,'Se informa al vendedor de su actitud. Se remite a psicologÃ­a',True,'Actitud del empleado /-/ La actitud del empleado Augusto con cÃ©dula 1111111146 no es la adecuada','1111111112');
 
 INSERT INTO solicitudes_presentadas VALUES('0000000001','1111111123',1,1);
 INSERT INTO solicitudes_presentadas VALUES('0000000004','1111111124',2,4);

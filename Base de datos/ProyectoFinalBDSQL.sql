@@ -47,7 +47,7 @@ CREATE TABLE rutas(
 CREATE TABLE estaciones_en_ruta(
 	id_ruta INTEGER REFERENCES rutas(id_ruta),
 	id_estacion INTEGER REFERENCES estaciones(id_estacion),
-	CONSTRAINT pk_estaciones_en_ruta PRIMARY KEY(id_ruta, id_estacion));
+	CONSTRAINT pk_estaciones_en_ruta PRIMARY KEY(id_ruta, id_estacion) ON DELETE CASCADE);
 
 CREATE TABLE tipo_bus(
 	id_tipo_bus SERIAL PRIMARY KEY,
@@ -284,10 +284,10 @@ INSERT INTO tarjeta_personalizada VALUES(2,0,'0000000002',2);
 INSERT INTO tarjeta_personalizada VALUES(3,0,'0000000003',3);
 INSERT INTO tarjeta_personalizada VALUES(4,0,'0000000004',1);
 
-INSERT INTO solicitudes VALUES(1,'',FALSE,'DaÃ±os en la estaciÃ³n', 'Las puertas no abren','1111111111');
-INSERT INTO solicitudes VALUES(2,'',FALSE,'DaÃ±os en los buses', 'El bus AAA111 no tiene aire acondicionado','1111111111');
-INSERT INTO solicitudes VALUES(3,'',FALSE,'No hay sistema', 'EsperÃ© 30 minutos para recargar por que no habÃ­a sistema','1111111114');
-INSERT INTO solicitudes VALUES(4,'Se informa al vendedor de su actitud. Se remite a psicologÃ­a',True,'Actitud del empleado', 'La actitud del empleado Augusto con cÃ©dula 1111111146 no es la adecuada','1111111112');
+INSERT INTO solicitudes VALUES(1,'',FALSE,'Daños en la estación', 'Las puertas no abren','1111111111');
+INSERT INTO solicitudes VALUES(2,'',FALSE,'Daños en los buses', 'El bus AAA111 no tiene aire acondicionado','1111111111');
+INSERT INTO solicitudes VALUES(3,'',FALSE,'No hay sistema', 'Esperé 30 minutos para recargar por que no había sistema','1111111114');
+INSERT INTO solicitudes VALUES(4,'Se informa al vendedor de su actitud. Se remite a psicología',True,'Actitud del empleado', 'La actitud del empleado Augusto con cédula 1111111146 no es la adecuada','1111111112');
 
 INSERT INTO solicitudes_presentadas VALUES('0000000001', 1,1);
 INSERT INTO solicitudes_presentadas VALUES('0000000004', 2,4);

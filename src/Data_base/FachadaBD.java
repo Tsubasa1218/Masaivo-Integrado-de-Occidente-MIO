@@ -15,10 +15,11 @@ public class FachadaBD {
         Connection conexion =null;
         Statement instruccion;
         ResultSet tabla;
-        FachadaBD(){
-            url="jdbc:postgresql://localhost:5432/prueba";
-            usuario="oswaldo";
-            password="oswaldo";
+        
+        public FachadaBD(){
+            url="jdbc:postgresql://localhost:5432/proyecto";
+            usuario="Juan";
+            password="1218";
         }
         
         
@@ -27,7 +28,7 @@ public class FachadaBD {
             try {
             // Se carga el driver
             Class.forName("org.postgresql.Driver");
-            //System.out.println( "Driver Cargado" );
+            System.out.println( "Driver Cargado" );
             } catch( Exception e ) {
                 System.out.println( "No se pudo cargar el driver." );
             }

@@ -171,9 +171,10 @@ public class frameLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frameLogin().setVisible(true);
-                new framePasajero().setVisible(true);
-                new frameAuxiliar().setVisible(true);
+                //new frameLogin().setVisible(true);
+                //new framePasajero().setVisible(true);
+                //new frameAuxiliar().setVisible(true);
+                new frameDirectorOperativo().setVisible(true);
             }
         });
     }

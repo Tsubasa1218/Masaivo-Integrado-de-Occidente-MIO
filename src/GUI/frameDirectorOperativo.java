@@ -5,6 +5,15 @@
  */
 package GUI;
 
+import Buses.ControladorBus;
+import Estaciones.ControladorEstacion;
+import Rutas.ControladorRuta;
+import Usuarios.ControladorUsuario;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan Suaza
@@ -14,8 +23,43 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
     /**
      * Creates new form frameDirectorOperativo
      */
+    CardLayout cl;
+    boolean conductor;
+    ControladorUsuario cUsuario;
+    ControladorRuta cRuta;
+    ControladorBus cBus;
+    ControladorEstacion cEst;
+    int botonSeleccionado;
+    ArrayList<String> estaciones;
+    
     public frameDirectorOperativo() {
         initComponents();
+        panelContenedor.setLayout(new CardLayout());
+        panelContenedor.add(panelInicialSlogan, "Inicio");
+        panelContenedor.add(panelAsignarTurnos, "Asignar turnos");
+        panelContenedor.add(panelCrearEstacion, "Crear estacion");
+        panelContenedor.add(panelCrearBus, "Crear bus");
+        panelContenedor.add(panelCrearRuta, "Crear ruta");
+        panelContenedor.add(panelModificarBus, "Modificar bus");
+        panelContenedor.add(panelModificarEstacion, "Modificar estacion");
+        panelContenedor.add(panelModificarRuta, "Modificar ruta");
+        panelContenedor.add(panelEliminarBus, "Eliminar bus");
+        panelContenedor.add(panelEliminarRuta, "Eliminar ruta");
+        panelContenedor.add(panelEliminarEstacion, "Eliminar estacion");
+        
+        
+        cl = (CardLayout)panelContenedor.getLayout();
+        conductor = false;
+        
+        cUsuario = new ControladorUsuario();
+        cRuta = new ControladorRuta();
+        cBus = new ControladorBus();
+        cEst = new ControladorEstacion();
+        
+        frameOpciones.setVisible(false);
+        frameOpciones.pack();
+        estaciones = new ArrayList<String>();
+
     }
 
     /**
@@ -31,9 +75,87 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
         slogan = new javax.swing.JLabel();
         frameOpciones = new javax.swing.JFrame();
         panelFondoOpciones = new javax.swing.JPanel();
+        agregar = new javax.swing.JLabel();
+        modificar = new javax.swing.JLabel();
+        eliminar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        panelCrearEstacion = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        nombreCrearEstacion = new javax.swing.JTextField();
+        ubicacionCrearEstacion = new javax.swing.JTextField();
+        encargadoCrearEstacion = new javax.swing.JComboBox();
+        aceptaarCrearEstacion = new javax.swing.JButton();
+        panelModificarEstacion = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        ubicacionModificarEstacion = new javax.swing.JTextField();
+        encargadoModificarEstacion = new javax.swing.JComboBox();
+        aceptarModificarEstacion = new javax.swing.JButton();
+        nombreModificarEstacion = new javax.swing.JComboBox();
+        panelEliminarEstacion = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        nombreEliminarEstacion = new javax.swing.JComboBox();
+        aaceptarEliminarEstacion = new javax.swing.JButton();
+        panelCrearRuta = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        descripcionCrearRuta = new javax.swing.JTextField();
+        nombreCrearRuta = new javax.swing.JTextField();
+        estacionesCrearRuta = new javax.swing.JComboBox();
+        agregarEstacionRuta = new javax.swing.JLabel();
+        aceptarCrearRuta = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        estacionesEnRuta = new javax.swing.JTextArea();
+        panelModificarRuta = new javax.swing.JPanel();
+        panelCrearRuta1 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        descripcionModificarRuta = new javax.swing.JTextField();
+        estacionesModificarRuta = new javax.swing.JComboBox();
+        agregarEstacionRutaModificar = new javax.swing.JLabel();
+        aceptarModificarRuta = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        estacionesEnRutaModificar = new javax.swing.JTextArea();
+        nombreModificarRuta = new javax.swing.JComboBox();
+        panelEliminarRuta = new javax.swing.JPanel();
+        panelAsignarTurnos = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        asignarTurnoInicial = new javax.swing.JComboBox();
+        jLabel18 = new javax.swing.JLabel();
+        asignarTurnoFinal = new javax.swing.JComboBox();
+        aceptarAsignarTurno = new javax.swing.JButton();
+        cedulaAsignarTurno = new javax.swing.JTextField();
+        buscarEmpleadoAsignarTurno = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        rutaAsignar = new javax.swing.JComboBox();
+        jLabel21 = new javax.swing.JLabel();
+        busAsignado = new javax.swing.JComboBox();
+        panelCrearBus = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        placaCrearBus = new javax.swing.JTextField();
+        tipoCrearBus = new javax.swing.JComboBox();
+        aceptarCrearBus = new javax.swing.JButton();
+        panelModificarBus = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        placaModificarBus = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        tipoModificarBus = new javax.swing.JComboBox();
+        aceptarModificarBus = new javax.swing.JButton();
+        buscarPlacaModificarBus = new javax.swing.JLabel();
+        panelEliminarBus = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        placaEliminarBus = new javax.swing.JTextField();
+        buscarPlacaEliminarBus = new javax.swing.JLabel();
+        aceptarEliminarBus = new javax.swing.JButton();
         panelFondo = new javax.swing.JPanel();
         consultarSaldo = new javax.swing.JLabel();
         consultarRuta = new javax.swing.JLabel();
@@ -69,49 +191,726 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
 
         panelFondoOpciones.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/add-3.png"))); // NOI18N
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/add-3.png"))); // NOI18N
+        agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarMouseClicked(evt);
+            }
+        });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/settings-4.png"))); // NOI18N
+        modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/settings-4.png"))); // NOI18N
+        modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificarMouseClicked(evt);
+            }
+        });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/close.png"))); // NOI18N
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/close.png"))); // NOI18N
+        eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminarMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Adicionar");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setText("Modificar");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setText("Eliminar");
 
         javax.swing.GroupLayout panelFondoOpcionesLayout = new javax.swing.GroupLayout(panelFondoOpciones);
         panelFondoOpciones.setLayout(panelFondoOpcionesLayout);
         panelFondoOpcionesLayout.setHorizontalGroup(
             panelFondoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoOpcionesLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addGroup(panelFondoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregar)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(panelFondoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modificar)
+                    .addComponent(jLabel2))
                 .addGap(39, 39, 39)
-                .addComponent(jLabel3)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addGroup(panelFondoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(eliminar))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         panelFondoOpcionesLayout.setVerticalGroup(
             panelFondoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoOpcionesLayout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addGroup(panelFondoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                .addGap(53, 53, 53)
+                .addGroup(panelFondoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addContainerGap(381, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelFondoOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eliminar)
+                    .addComponent(agregar)
+                    .addComponent(modificar))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout frameOpcionesLayout = new javax.swing.GroupLayout(frameOpciones.getContentPane());
         frameOpciones.getContentPane().setLayout(frameOpcionesLayout);
         frameOpcionesLayout.setHorizontalGroup(
             frameOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frameOpcionesLayout.createSequentialGroup()
-                .addComponent(panelFondoOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelFondoOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         frameOpcionesLayout.setVerticalGroup(
             frameOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frameOpcionesLayout.createSequentialGroup()
-                .addComponent(panelFondoOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelFondoOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        panelCrearEstacion.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("Nombre:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("Ubicación:");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setText("Encargado:");
+
+        encargadoCrearEstacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccion un empleado --" }));
+
+        aceptaarCrearEstacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptaarCrearEstacion.setBorder(null);
+        aceptaarCrearEstacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptaarCrearEstacionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCrearEstacionLayout = new javax.swing.GroupLayout(panelCrearEstacion);
+        panelCrearEstacion.setLayout(panelCrearEstacionLayout);
+        panelCrearEstacionLayout.setHorizontalGroup(
+            panelCrearEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearEstacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aceptaarCrearEstacion)
+                    .addGroup(panelCrearEstacionLayout.createSequentialGroup()
+                        .addGroup(panelCrearEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(28, 28, 28)
+                        .addGroup(panelCrearEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nombreCrearEstacion)
+                            .addComponent(ubicacionCrearEstacion)
+                            .addComponent(encargadoCrearEstacion, 0, 161, Short.MAX_VALUE))))
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+        panelCrearEstacionLayout.setVerticalGroup(
+            panelCrearEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearEstacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(nombreCrearEstacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelCrearEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(ubicacionCrearEstacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelCrearEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(encargadoCrearEstacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(aceptaarCrearEstacion)
+                .addContainerGap(236, Short.MAX_VALUE))
+        );
+
+        panelModificarEstacion.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Nombre:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setText("Ubicación:");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setText("Encargado:");
+
+        ubicacionModificarEstacion.setBackground(new java.awt.Color(255, 255, 255));
+
+        encargadoModificarEstacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccion un empleado --" }));
+
+        aceptarModificarEstacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptarModificarEstacion.setBorder(null);
+        aceptarModificarEstacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarModificarEstacionActionPerformed(evt);
+            }
+        });
+
+        nombreModificarEstacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccione una estacion --" }));
+        nombreModificarEstacion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nombreModificarEstacionItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelModificarEstacionLayout = new javax.swing.GroupLayout(panelModificarEstacion);
+        panelModificarEstacion.setLayout(panelModificarEstacionLayout);
+        panelModificarEstacionLayout.setHorizontalGroup(
+            panelModificarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelModificarEstacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelModificarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aceptarModificarEstacion)
+                    .addGroup(panelModificarEstacionLayout.createSequentialGroup()
+                        .addGroup(panelModificarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGap(28, 28, 28)
+                        .addGroup(panelModificarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ubicacionModificarEstacion)
+                            .addComponent(encargadoModificarEstacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nombreModificarEstacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+        panelModificarEstacionLayout.setVerticalGroup(
+            panelModificarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelModificarEstacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelModificarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(nombreModificarEstacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelModificarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(ubicacionModificarEstacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelModificarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(encargadoModificarEstacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(aceptarModificarEstacion)
+                .addContainerGap(236, Short.MAX_VALUE))
+        );
+
+        panelEliminarEstacion.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("Nombre:");
+
+        nombreEliminarEstacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccione una estación --" }));
+
+        aaceptarEliminarEstacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aaceptarEliminarEstacion.setBorder(null);
+        aaceptarEliminarEstacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aaceptarEliminarEstacionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelEliminarEstacionLayout = new javax.swing.GroupLayout(panelEliminarEstacion);
+        panelEliminarEstacion.setLayout(panelEliminarEstacionLayout);
+        panelEliminarEstacionLayout.setHorizontalGroup(
+            panelEliminarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEliminarEstacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelEliminarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aaceptarEliminarEstacion)
+                    .addGroup(panelEliminarEstacionLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreEliminarEstacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(226, Short.MAX_VALUE))
+        );
+        panelEliminarEstacionLayout.setVerticalGroup(
+            panelEliminarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEliminarEstacionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelEliminarEstacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(nombreEliminarEstacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(aaceptarEliminarEstacion)
+                .addContainerGap(289, Short.MAX_VALUE))
+        );
+
+        panelCrearRuta.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel19.setText("Nombre:");
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel22.setText("Descripción:");
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel23.setText("Estaciones:");
+
+        agregarEstacionRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/success.png"))); // NOI18N
+        agregarEstacionRuta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarEstacionRutaMouseClicked(evt);
+            }
+        });
+
+        aceptarCrearRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptarCrearRuta.setBorder(null);
+        aceptarCrearRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarCrearRutaActionPerformed(evt);
+            }
+        });
+
+        estacionesEnRuta.setEditable(false);
+        estacionesEnRuta.setColumns(20);
+        estacionesEnRuta.setRows(5);
+        jScrollPane1.setViewportView(estacionesEnRuta);
+
+        javax.swing.GroupLayout panelCrearRutaLayout = new javax.swing.GroupLayout(panelCrearRuta);
+        panelCrearRuta.setLayout(panelCrearRutaLayout);
+        panelCrearRutaLayout.setHorizontalGroup(
+            panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearRutaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aceptarCrearRuta)
+                    .addGroup(panelCrearRutaLayout.createSequentialGroup()
+                        .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel23))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelCrearRutaLayout.createSequentialGroup()
+                                .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(nombreCrearRuta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                        .addComponent(descripcionCrearRuta, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(estacionesCrearRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(agregarEstacionRuta))
+                            .addComponent(jScrollPane1))))
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+        panelCrearRutaLayout.setVerticalGroup(
+            panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearRutaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(nombreCrearRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(descripcionCrearRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCrearRutaLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(panelCrearRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23)
+                            .addComponent(estacionesCrearRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelCrearRutaLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(agregarEstacionRuta)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(aceptarCrearRuta)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
+        panelCrearRuta1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel24.setText("Nombre:");
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel25.setText("Descripción:");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel26.setText("Estaciones:");
+
+        agregarEstacionRutaModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/success.png"))); // NOI18N
+        agregarEstacionRutaModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarEstacionRutaModificarMouseClicked(evt);
+            }
+        });
+
+        aceptarModificarRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptarModificarRuta.setBorder(null);
+        aceptarModificarRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarModificarRutaActionPerformed(evt);
+            }
+        });
+
+        estacionesEnRutaModificar.setEditable(false);
+        estacionesEnRutaModificar.setColumns(20);
+        estacionesEnRutaModificar.setRows(5);
+        jScrollPane2.setViewportView(estacionesEnRutaModificar);
+
+        nombreModificarRuta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nombreModificarRutaItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCrearRuta1Layout = new javax.swing.GroupLayout(panelCrearRuta1);
+        panelCrearRuta1.setLayout(panelCrearRuta1Layout);
+        panelCrearRuta1Layout.setHorizontalGroup(
+            panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearRuta1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aceptarModificarRuta)
+                    .addGroup(panelCrearRuta1Layout.createSequentialGroup()
+                        .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel26))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelCrearRuta1Layout.createSequentialGroup()
+                                .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(descripcionModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(estacionesModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(agregarEstacionRutaModificar))
+                            .addComponent(jScrollPane2)
+                            .addComponent(nombreModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+        panelCrearRuta1Layout.setVerticalGroup(
+            panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearRuta1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(nombreModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(descripcionModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCrearRuta1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26)
+                            .addComponent(estacionesModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelCrearRuta1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(agregarEstacionRutaModificar)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(aceptarModificarRuta)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panelModificarRutaLayout = new javax.swing.GroupLayout(panelModificarRuta);
+        panelModificarRuta.setLayout(panelModificarRutaLayout);
+        panelModificarRutaLayout.setHorizontalGroup(
+            panelModificarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 477, Short.MAX_VALUE)
+            .addGroup(panelModificarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelModificarRutaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelCrearRuta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        panelModificarRutaLayout.setVerticalGroup(
+            panelModificarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+            .addGroup(panelModificarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelModificarRutaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelCrearRuta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout panelEliminarRutaLayout = new javax.swing.GroupLayout(panelEliminarRuta);
+        panelEliminarRuta.setLayout(panelEliminarRutaLayout);
+        panelEliminarRutaLayout.setHorizontalGroup(
+            panelEliminarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        panelEliminarRutaLayout.setVerticalGroup(
+            panelEliminarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        panelAsignarTurnos.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel16.setText("Cédula del empleado:");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel17.setText("Turno de:");
+
+        asignarTurnoInicial.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Seleccione un turno --", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10", "11", "12", "13", "14 ", "15 ", "16 ", "17 ", "18 ", "19 ", "20  ", "21 ", "22 ", " " }));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel18.setText("a");
+
+        asignarTurnoFinal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Seleccione un turno --", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10", "11", "12", "13", "14 ", "15 ", "16 ", "17 ", "18 ", "19 ", "20  ", "21 ", "22", " " }));
+
+        aceptarAsignarTurno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptarAsignarTurno.setBorder(null);
+        aceptarAsignarTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarAsignarTurnoActionPerformed(evt);
+            }
+        });
+
+        buscarEmpleadoAsignarTurno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/search.png"))); // NOI18N
+        buscarEmpleadoAsignarTurno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarEmpleadoAsignarTurnoMouseClicked(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel20.setText("Ruta asignada:");
+
+        rutaAsignar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccione una ruta --" }));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel21.setText("Bus asignado:");
+
+        busAsignado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccione un bus --" }));
+
+        javax.swing.GroupLayout panelAsignarTurnosLayout = new javax.swing.GroupLayout(panelAsignarTurnos);
+        panelAsignarTurnos.setLayout(panelAsignarTurnosLayout);
+        panelAsignarTurnosLayout.setHorizontalGroup(
+            panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAsignarTurnosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAsignarTurnosLayout.createSequentialGroup()
+                        .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(aceptarAsignarTurno)
+                            .addGroup(panelAsignarTurnosLayout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(18, 18, 18)
+                                .addComponent(cedulaAsignarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscarEmpleadoAsignarTurno)
+                                .addGap(108, 108, 108))
+                            .addGroup(panelAsignarTurnosLayout.createSequentialGroup()
+                                .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel20))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelAsignarTurnosLayout.createSequentialGroup()
+                                        .addComponent(asignarTurnoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(asignarTurnoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(busAsignado, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(rutaAsignar, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(26, 26, 26)))
+                        .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(panelAsignarTurnosLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        panelAsignarTurnosLayout.setVerticalGroup(
+            panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAsignarTurnosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(cedulaAsignarTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarEmpleadoAsignarTurno))
+                .addGap(18, 18, 18)
+                .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(asignarTurnoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(asignarTurnoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(rutaAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelAsignarTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(busAsignado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(aceptarAsignarTurno)
+                .addGap(21, 21, 21))
+        );
+
+        panelCrearBus.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("Placa:");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel12.setText("Tipo:");
+
+        tipoCrearBus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccion un tipo --", "Alimentador", "Padron", "Articulado" }));
+
+        aceptarCrearBus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptarCrearBus.setBorder(null);
+        aceptarCrearBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarCrearBusActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCrearBusLayout = new javax.swing.GroupLayout(panelCrearBus);
+        panelCrearBus.setLayout(panelCrearBusLayout);
+        panelCrearBusLayout.setHorizontalGroup(
+            panelCrearBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearBusLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aceptarCrearBus)
+                    .addGroup(panelCrearBusLayout.createSequentialGroup()
+                        .addGroup(panelCrearBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelCrearBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(placaCrearBus)
+                            .addComponent(tipoCrearBus, 0, 132, Short.MAX_VALUE))))
+                .addContainerGap(255, Short.MAX_VALUE))
+        );
+        panelCrearBusLayout.setVerticalGroup(
+            panelCrearBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearBusLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(placaCrearBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelCrearBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(tipoCrearBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(aceptarCrearBus)
+                .addContainerGap(225, Short.MAX_VALUE))
+        );
+
+        panelModificarBus.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel13.setText("Placa:");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setText("Tipo:");
+
+        tipoModificarBus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccion un tipo --", "Alimentador", "Padron", "Articulado" }));
+
+        aceptarModificarBus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptarModificarBus.setBorder(null);
+        aceptarModificarBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarModificarBusActionPerformed(evt);
+            }
+        });
+
+        buscarPlacaModificarBus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/search.png"))); // NOI18N
+        buscarPlacaModificarBus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarPlacaModificarBusMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelModificarBusLayout = new javax.swing.GroupLayout(panelModificarBus);
+        panelModificarBus.setLayout(panelModificarBusLayout);
+        panelModificarBusLayout.setHorizontalGroup(
+            panelModificarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelModificarBusLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelModificarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aceptarModificarBus)
+                    .addGroup(panelModificarBusLayout.createSequentialGroup()
+                        .addGroup(panelModificarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelModificarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(placaModificarBus)
+                            .addComponent(tipoModificarBus, 0, 132, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buscarPlacaModificarBus)
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+        panelModificarBusLayout.setVerticalGroup(
+            panelModificarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelModificarBusLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelModificarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(placaModificarBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarPlacaModificarBus))
+                .addGap(18, 18, 18)
+                .addGroup(panelModificarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(tipoModificarBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(aceptarModificarBus)
+                .addContainerGap(204, Short.MAX_VALUE))
+        );
+
+        panelEliminarBus.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setText("Placa:");
+
+        buscarPlacaEliminarBus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/search.png"))); // NOI18N
+        buscarPlacaEliminarBus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarPlacaEliminarBusMouseClicked(evt);
+            }
+        });
+
+        aceptarEliminarBus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptarEliminarBus.setBorder(null);
+        aceptarEliminarBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarEliminarBusActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelEliminarBusLayout = new javax.swing.GroupLayout(panelEliminarBus);
+        panelEliminarBus.setLayout(panelEliminarBusLayout);
+        panelEliminarBusLayout.setHorizontalGroup(
+            panelEliminarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEliminarBusLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelEliminarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aceptarEliminarBus)
+                    .addGroup(panelEliminarBusLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
+                        .addComponent(placaEliminarBus, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(buscarPlacaEliminarBus)
+                .addContainerGap(195, Short.MAX_VALUE))
+        );
+        panelEliminarBusLayout.setVerticalGroup(
+            panelEliminarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEliminarBusLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelEliminarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buscarPlacaEliminarBus)
+                    .addGroup(panelEliminarBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(placaEliminarBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(aceptarEliminarBus)
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,15 +927,35 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
 
         estacionesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/estaciones.png"))); // NOI18N
         estacionesBoton.setBorder(null);
+        estacionesBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estacionesBotonActionPerformed(evt);
+            }
+        });
 
         rutasBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/rutas.png"))); // NOI18N
         rutasBoton.setBorder(null);
+        rutasBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rutasBotonActionPerformed(evt);
+            }
+        });
 
         busesBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/buses.png"))); // NOI18N
         busesBoton.setBorder(null);
+        busesBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busesBotonActionPerformed(evt);
+            }
+        });
 
         asignarTurnoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/asignarTurno.png"))); // NOI18N
         asignarTurnoBoton.setBorder(null);
+        asignarTurnoBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignarTurnoBotonActionPerformed(evt);
+            }
+        });
 
         panelContenedor.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -221,6 +1040,299 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void aceptarEliminarBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarEliminarBusActionPerformed
+        // TODO add your handling code here:
+        String placa = placaEliminarBus.getText();
+        int numFilas = cBus.eliminarBus(placa);
+        if(numFilas != -1 || numFilas != 0){
+            JOptionPane.showMessageDialog(null, "Bus eliminado!");
+        }
+    }//GEN-LAST:event_aceptarEliminarBusActionPerformed
+
+    private void estacionesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estacionesBotonActionPerformed
+        // TODO add your handling code here:
+        botonSeleccionado = 1;
+        frameOpciones.setVisible(true);
+    }//GEN-LAST:event_estacionesBotonActionPerformed
+
+    private void rutasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rutasBotonActionPerformed
+        // TODO add your handling code here:
+        botonSeleccionado = 2;
+        frameOpciones.setVisible(true);
+    }//GEN-LAST:event_rutasBotonActionPerformed
+
+    private void busesBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busesBotonActionPerformed
+        // TODO add your handling code here:
+        botonSeleccionado = 3;
+        frameOpciones.setVisible(true);
+    }//GEN-LAST:event_busesBotonActionPerformed
+
+    private void asignarTurnoBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarTurnoBotonActionPerformed
+        // TODO add your handling code here:
+        cl.show(panelContenedor, "Asignar turnos");
+        asignarTurnoInicial.setEnabled(false);
+        asignarTurnoFinal.setEnabled(false);
+        rutaAsignar.setEnabled(false);
+        busAsignado.setEnabled(false);
+    }//GEN-LAST:event_asignarTurnoBotonActionPerformed
+
+    private void aceptarAsignarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarAsignarTurnoActionPerformed
+        // TODO add your handling code here:
+        
+        if(conductor){
+            String codigo = cedulaAsignarTurno.getText();
+            String turno_inicio = (String)asignarTurnoInicial.getSelectedItem();
+            String turno_fin = (String)asignarTurnoFinal.getSelectedItem();
+            String ruta_asignar = (String)rutaAsignar.getSelectedItem();
+            String bus_asignado = (String)busAsignado.getSelectedItem();
+            
+            int codigoRuta = cRuta.codigoDeNombre(ruta_asignar);
+            
+            cUsuario.asignarTurno(codigo, turno_inicio, turno_fin, bus_asignado, codigoRuta);
+        }
+    }//GEN-LAST:event_aceptarAsignarTurnoActionPerformed
+
+    private void agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMouseClicked
+        // TODO add your handling code here:
+        if(botonSeleccionado == 1){
+            cl.show(panelContenedor, "Crear estacion");
+            frameOpciones.setVisible(false);
+            encargadoCrearEstacion.removeAllItems();
+            cUsuario.empleadosNoEncargados(encargadoCrearEstacion);
+        }else if(botonSeleccionado == 2){
+            cl.show(panelContenedor, "Crear ruta");
+            frameOpciones.setVisible(false);
+            cEst.listarEstaciones(estacionesCrearRuta);
+        }else if(botonSeleccionado == 3){
+            cl.show(panelContenedor, "Crear bus");
+            frameOpciones.setVisible(false);
+        }
+    }//GEN-LAST:event_agregarMouseClicked
+
+    private void modificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarMouseClicked
+        // TODO add your handling code here:
+        if(botonSeleccionado == 1){
+            cl.show(panelContenedor, "Modificar estacion");
+            frameOpciones.setVisible(false);
+            nombreModificarEstacion.removeAllItems();
+            cEst.listarEstaciones(nombreModificarEstacion);
+        }else if(botonSeleccionado == 2){
+            cl.show(panelContenedor, "Modificar ruta");
+            frameOpciones.setVisible(false);
+            nombreModificarRuta.removeAllItems();
+            cRuta.listaRutas(nombreModificarRuta);
+        }else if(botonSeleccionado == 3){
+            cl.show(panelContenedor, "Modificar bus");
+            tipoModificarBus.setEnabled(false);
+            aceptarModificarBus.setEnabled(false);
+            frameOpciones.setVisible(false);
+        }
+    }//GEN-LAST:event_modificarMouseClicked
+
+    private void eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarMouseClicked
+        // TODO add your handling code here:
+        if(botonSeleccionado == 1){
+            cl.show(panelContenedor, "Eliminar estacion");      
+            frameOpciones.setVisible(false);
+            nombreEliminarEstacion.removeAllItems();
+            cEst.listarEstaciones(nombreEliminarEstacion);
+        }else if(botonSeleccionado == 2){
+            cl.show(panelContenedor, "Eliminar ruta");
+            frameOpciones.setVisible(false);
+        }else if(botonSeleccionado == 3){
+            cl.show(panelContenedor, "Eliminar bus");
+            frameOpciones.setVisible(false);
+            aceptarEliminarBus.setEnabled(false);
+        }
+    }//GEN-LAST:event_eliminarMouseClicked
+
+    private void buscarEmpleadoAsignarTurnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarEmpleadoAsignarTurnoMouseClicked
+        // TODO add your handling code here:
+        String codigo = cedulaAsignarTurno.getText();
+        String tipo = cUsuario.tipoUsuario(codigo);
+        if(tipo.equals("Conductor")){
+            conductor = true;
+            asignarTurnoInicial.setEnabled(true);
+            asignarTurnoFinal.setEnabled(true);
+            rutaAsignar.setEnabled(true);
+            busAsignado.setEnabled(true);
+            rutaAsignar.removeAllItems();
+            cRuta.listaRutas(rutaAsignar);
+            busAsignado.removeAllItems();
+            cBus.listaBuses(busAsignado);
+            
+        }else{
+            conductor = false;
+            JOptionPane.showMessageDialog(null, "Error", "El empleado no es un conductor", JOptionPane.ERROR_MESSAGE);
+            asignarTurnoInicial.setEnabled(false);
+            asignarTurnoFinal.setEnabled(false);
+            rutaAsignar.setEnabled(false);
+            busAsignado.setEnabled(false);
+        }
+    }//GEN-LAST:event_buscarEmpleadoAsignarTurnoMouseClicked
+
+    private void aceptarCrearBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarCrearBusActionPerformed
+        // TODO add your handling code here:
+        String placa = placaCrearBus.getText();
+        String tipo = tipoCrearBus.getSelectedItem().toString();
+        
+        int codigo_tipo = cBus.codigoTipoBus(tipo);
+        
+        int numFilas = cBus.agregarBus(placa, codigo_tipo);
+        if(numFilas != -1 || numFilas != 0){
+            JOptionPane.showMessageDialog(null, "Bus agregado!");
+        }
+    }//GEN-LAST:event_aceptarCrearBusActionPerformed
+
+    private void aceptarModificarBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarModificarBusActionPerformed
+        // TODO add your handling code here:
+        String placa = placaModificarBus.getText();
+        String nombre_tipo = tipoModificarBus.getSelectedItem().toString();
+        
+        int codigo_tipo = cBus.codigoTipoBus(nombre_tipo);
+        
+        int numFilas = cBus.modificarBus(placa, codigo_tipo);
+        if(numFilas != -1 || numFilas != 0){
+            JOptionPane.showMessageDialog(null, "Bus modificado!");
+        }
+    }//GEN-LAST:event_aceptarModificarBusActionPerformed
+
+    private void buscarPlacaModificarBusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarPlacaModificarBusMouseClicked
+        // TODO add your handling code here:
+        String placa = placaModificarBus.getText();
+        boolean existe = cBus.existeBus(placa);
+        
+        if(existe){
+            tipoModificarBus.setEnabled(true);
+            aceptarModificarBus.setEnabled(true);
+            existe = false;
+        }
+    }//GEN-LAST:event_buscarPlacaModificarBusMouseClicked
+
+    private void buscarPlacaEliminarBusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarPlacaEliminarBusMouseClicked
+        // TODO add your handling code here:
+        String placa = placaEliminarBus.getText();
+        boolean existe = cBus.existeBus(placa);
+        
+        if(existe){
+            aceptarEliminarBus.setEnabled(true);
+            existe = false;
+        }else{
+            JOptionPane.showMessageDialog(null, "La placa no esta registrada");
+        }
+    }//GEN-LAST:event_buscarPlacaEliminarBusMouseClicked
+
+    private void aceptaarCrearEstacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptaarCrearEstacionActionPerformed
+        // TODO add your handling code here:
+        String nombre = nombreCrearEstacion.getText();
+        String ubicacion = ubicacionCrearEstacion.getText();
+        String nombre_empleado = encargadoCrearEstacion.getSelectedItem().toString();
+        
+        String codigo_empleado = cUsuario.codigoUsuario(nombre_empleado);
+        
+        int numFilas = cEst.agregarEstacion(nombre, ubicacion, codigo_empleado);
+        if(numFilas != -1 || numFilas != 0){
+            JOptionPane.showMessageDialog(null, "Estacion agregada!");
+        }
+    }//GEN-LAST:event_aceptaarCrearEstacionActionPerformed
+
+    private void aceptarModificarEstacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarModificarEstacionActionPerformed
+        // TODO add your handling code here:
+        if (encargadoModificarEstacion.getSelectedItem().toString().equals("-- Seleccione un empleado --")) {
+            JOptionPane.showMessageDialog(null, "Seleccione un empleado", "Error", JOptionPane.ERROR_MESSAGE);
+        }else if (!ubicacionModificarEstacion.getText().equals("")) {
+            String nombre = nombreModificarEstacion.getSelectedItem().toString();
+            String ubicacion = ubicacionModificarEstacion.getText();
+            String nombre_empleado = encargadoModificarEstacion.getSelectedItem().toString();
+            String codigo_empleado = cUsuario.codigoUsuario(nombre_empleado);
+
+            int numFilas = cEst.modificarEstacion(nombre, ubicacion, codigo_empleado);
+            if (numFilas != -1 || numFilas != 0) {
+                JOptionPane.showMessageDialog(null, "Estacion modificada!");
+            }
+        }
+    }//GEN-LAST:event_aceptarModificarEstacionActionPerformed
+
+    private void nombreModificarEstacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nombreModificarEstacionItemStateChanged
+        // TODO add your handling code here:
+        try{
+            if (nombreModificarEstacion.getSelectedItem().toString().equals("")) {
+                ubicacionModificarEstacion.setText("");
+                encargadoModificarEstacion.setSelectedIndex(1);
+            } else {
+                String ubicacion = cEst.obtenerUbicacion(nombreModificarEstacion.getSelectedItem().toString());
+                ubicacionModificarEstacion.setText(ubicacion);
+                encargadoModificarEstacion.removeAllItems();
+                cUsuario.empleadosNoEncargados(encargadoModificarEstacion);
+            }
+        }catch(NullPointerException ex){
+            System.out.println(ex);//nombreModificarEstacion.addItem("-- Seleccione una estacion --");
+        }
+    }//GEN-LAST:event_nombreModificarEstacionItemStateChanged
+
+    private void aaceptarEliminarEstacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aaceptarEliminarEstacionActionPerformed
+        // TODO add your handling code here:
+        String nombre = nombreEliminarEstacion.getSelectedItem().toString();
+        if(nombre.equals("-- Seleccione una estacion --")){
+            JOptionPane.showMessageDialog(null, "Seleccione una estacion", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            int numFilas = cEst.eliminarEstacion(nombre);
+            if (numFilas != -1 || numFilas != 0) {
+                JOptionPane.showMessageDialog(null, "Estacion eliminada!");
+            }
+        }
+    }//GEN-LAST:event_aaceptarEliminarEstacionActionPerformed
+
+    private void agregarEstacionRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarEstacionRutaMouseClicked
+        // TODO add your handling code here:
+        String estacion = estacionesCrearRuta.getSelectedItem().toString();
+        if (!estacion.equals("-- Seleccione una estacion --")) {
+            int index = estacionesCrearRuta.getSelectedIndex();
+            estaciones.add(estacion);
+            String contenidoTA = estacionesEnRuta.getText();
+            contenidoTA += "\n" + estacion;
+            estacionesEnRuta.setText(contenidoTA);
+
+            estacionesCrearRuta.removeItemAt(index);
+        }
+        
+    }//GEN-LAST:event_agregarEstacionRutaMouseClicked
+
+    private void aceptarCrearRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarCrearRutaActionPerformed
+        // TODO add your handling code here:
+        String nombre = nombreCrearRuta.getText();
+        String descripcion = descripcionCrearRuta.getText();
+        
+        cRuta.agregarRuta(nombre, descripcion, estaciones);
+        estaciones.clear();
+        estacionesEnRuta.setText("");
+    }//GEN-LAST:event_aceptarCrearRutaActionPerformed
+
+    private void agregarEstacionRutaModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarEstacionRutaModificarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregarEstacionRutaModificarMouseClicked
+
+    private void aceptarModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarModificarRutaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarModificarRutaActionPerformed
+
+    private void nombreModificarRutaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nombreModificarRutaItemStateChanged
+        // TODO add your handling code here:
+        try{
+            if (nombreModificarRuta.getSelectedItem().toString().equals("")) {
+                descripcionModificarRuta.setText("");
+                estacionesModificarRuta.setSelectedIndex(1);
+            } else {
+                String descripcion = cRuta.obtenerDescripcion(nombreModificarRuta.getSelectedItem().toString());
+                descripcionModificarRuta.setText(descripcion);
+                //encargadoModificarEstacion.removeAllItems();
+                //cUsuario.empleadosNoEncargados(encargadoModificarEstacion);
+            }
+        }catch(NullPointerException ex){
+            System.out.println(ex);//nombreModificarEstacion.addItem("-- Seleccione una estacion --");
+        }
+    }//GEN-LAST:event_nombreModificarRutaItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -257,23 +1369,101 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aaceptarEliminarEstacion;
     private javax.swing.JLabel abordarBus;
+    private javax.swing.JButton aceptaarCrearEstacion;
+    private javax.swing.JButton aceptarAsignarTurno;
+    private javax.swing.JButton aceptarCrearBus;
+    private javax.swing.JButton aceptarCrearRuta;
+    private javax.swing.JButton aceptarEliminarBus;
+    private javax.swing.JButton aceptarModificarBus;
+    private javax.swing.JButton aceptarModificarEstacion;
+    private javax.swing.JButton aceptarModificarRuta;
+    private javax.swing.JLabel agregar;
+    private javax.swing.JLabel agregarEstacionRuta;
+    private javax.swing.JLabel agregarEstacionRutaModificar;
     private javax.swing.JButton asignarTurnoBoton;
+    private javax.swing.JComboBox asignarTurnoFinal;
+    private javax.swing.JComboBox asignarTurnoInicial;
     private javax.swing.JLabel banner;
+    private javax.swing.JComboBox busAsignado;
+    private javax.swing.JLabel buscarEmpleadoAsignarTurno;
+    private javax.swing.JLabel buscarPlacaEliminarBus;
+    private javax.swing.JLabel buscarPlacaModificarBus;
     private javax.swing.JButton busesBoton;
+    private javax.swing.JTextField cedulaAsignarTurno;
     private javax.swing.JLabel consultarRuta;
     private javax.swing.JLabel consultarSaldo;
     private javax.swing.JLabel consultarSolicitud;
+    private javax.swing.JTextField descripcionCrearRuta;
+    private javax.swing.JTextField descripcionModificarRuta;
+    private javax.swing.JLabel eliminar;
+    private javax.swing.JComboBox encargadoCrearEstacion;
+    private javax.swing.JComboBox encargadoModificarEstacion;
     private javax.swing.JButton estacionesBoton;
+    private javax.swing.JComboBox estacionesCrearRuta;
+    private javax.swing.JTextArea estacionesEnRuta;
+    private javax.swing.JTextArea estacionesEnRutaModificar;
+    private javax.swing.JComboBox estacionesModificarRuta;
     private javax.swing.JFrame frameOpciones;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel modificar;
+    private javax.swing.JTextField nombreCrearEstacion;
+    private javax.swing.JTextField nombreCrearRuta;
+    private javax.swing.JComboBox nombreEliminarEstacion;
+    private javax.swing.JComboBox nombreModificarEstacion;
+    private javax.swing.JComboBox nombreModificarRuta;
+    private javax.swing.JPanel panelAsignarTurnos;
     private javax.swing.JPanel panelContenedor;
+    private javax.swing.JPanel panelCrearBus;
+    private javax.swing.JPanel panelCrearEstacion;
+    private javax.swing.JPanel panelCrearRuta;
+    private javax.swing.JPanel panelCrearRuta1;
+    private javax.swing.JPanel panelEliminarBus;
+    private javax.swing.JPanel panelEliminarEstacion;
+    private javax.swing.JPanel panelEliminarRuta;
     private javax.swing.JPanel panelFondo;
     private javax.swing.JPanel panelFondoOpciones;
     private javax.swing.JPanel panelInicialSlogan;
+    private javax.swing.JPanel panelModificarBus;
+    private javax.swing.JPanel panelModificarEstacion;
+    private javax.swing.JPanel panelModificarRuta;
+    private javax.swing.JTextField placaCrearBus;
+    private javax.swing.JTextField placaEliminarBus;
+    private javax.swing.JTextField placaModificarBus;
+    private javax.swing.JComboBox rutaAsignar;
     private javax.swing.JButton rutasBoton;
     private javax.swing.JLabel slogan;
+    private javax.swing.JComboBox tipoCrearBus;
+    private javax.swing.JComboBox tipoModificarBus;
+    private javax.swing.JTextField ubicacionCrearEstacion;
+    private javax.swing.JTextField ubicacionModificarEstacion;
     // End of variables declaration//GEN-END:variables
 }

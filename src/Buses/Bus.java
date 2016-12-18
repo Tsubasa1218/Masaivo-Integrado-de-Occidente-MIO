@@ -10,5 +10,16 @@ package Buses;
  * @author Juan Suaza
  */
 public class Bus {
+    String placa, nombre_tipo;
+    int tipo;
+    
+    public Bus(String placa, int tipo){
+        this.tipo = tipo;
+        this.placa = placa;
+    }
+    
+    public Bus(String nombre_tipo){
+        this.nombre_tipo = nombre_tipo;
+    }
     
 }

@@ -10,5 +10,14 @@ package Estaciones;
  * @author Juan Suaza
  */
 public class Estacion {
+    int id;
+    String nombre, ubicacion, empleadoEncargado;
+    
+    public Estacion(String nombre, String ubicacion, String empleadoEncargado){
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+        this.empleadoEncargado = empleadoEncargado;
+    }
+    
     
 }

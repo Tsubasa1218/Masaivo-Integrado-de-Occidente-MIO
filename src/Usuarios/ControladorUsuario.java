@@ -5,10 +5,47 @@
  */
 package Usuarios;
 
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan Suaza
  */
 public class ControladorUsuario {
+    DAOUsuario daoUsuario;
     
+    public ControladorUsuario(){
+        daoUsuario = new DAOUsuario();
+    }
+    
+    public int asignarTurno(String codigo, String turno_inicio, String turno_fin, String placa, int ruta_id){
+        Usuario user = new Usuario(codigo, "", -1, turno_inicio, turno_fin, placa, ruta_id);
+        
+        int numFilas1 = daoUsuario.asignarTurno(user);
+        int numFilas2 = daoUsuario.asignarTurnoRuta(user);
+        if(numFilas1 != -1 && numFilas2 != -1){
+            JOptionPane.showMessageDialog(null, "Exito!", "Ruta asignada con exito", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return numFilas1 + numFilas2;
+    }
+    
+    public String tipoUsuario(String codigo){
+        Usuario user = new Usuario(codigo, null, -1, null, null, null, -1);
+        
+        String nombreCargo = daoUsuario.tipoUsuario(user);
+        return nombreCargo;
+    }
+    
+    public String codigoUsuario(String nombre){
+        Usuario user = new Usuario(nombre);
+        
+        String cedula = daoUsuario.codigoUsuario(user);
+        
+        return cedula;
+    }
+    
+    public void empleadosNoEncargados(JComboBox cb){
+        daoUsuario.empleadosNoEncargados(cb);
+    }
 }

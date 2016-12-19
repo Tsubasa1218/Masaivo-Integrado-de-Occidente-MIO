@@ -137,4 +137,64 @@ public class DAORuta {
         }
         return null;
     }
+    
+    public int modificarRuta(Ruta ruta, int codigo){
+        String consultaSQL;
+
+        List<String> id_estaciones;
+        id_estaciones = new ArrayList<String>();
+
+        //consultaSQL = "INSERT INTO rutas(nombre_ruta, descripcion_ruta) VALUES('" + ruta.nombre + "', '" + ruta.descripcion + "');";
+
+        try {
+            Connection conn = fachada.getConnetion();
+            Statement sentencia = conn.createStatement();
+            for (String nombre : ruta.estaciones) {
+                consultaSQL = "SELECT id_estacion FROM estaciones WHERE nombre_estacion LIKE '" + nombre + "';";
+                ResultSet ids = sentencia.executeQuery(consultaSQL);
+                while(ids.next()){
+                    id_estaciones.add("" + ids.getInt("id_estacion"));
+                }
+            }
+            consultaSQL = "INSERT INTO rutas VALUES(" + codigo +  ", '" + ruta.nombre + "', '" + ruta.descripcion + "');";
+            int numFilas = sentencia.executeUpdate(consultaSQL);
+            //System.out.println("up " + numFilas);  
+            if (numFilas != 0) {
+                for(String ids : id_estaciones){
+
+                    consultaSQL = "INSERT INTO estaciones_en_ruta VALUES (" + codigo + ", " + ids + ");";
+                    numFilas += sentencia.executeUpdate(consultaSQL);
+                }
+            }
+            return numFilas;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        catch(Exception e){ 
+            System.out.println(e);
+        }
+        return -1;
+    }
+    
+    public int eliminarRuta(int codigo){
+        String consultaSQL = "DELETE FROM estaciones_en_ruta WHERE id_ruta = " + codigo + ";";
+        try{
+            Connection conn= fachada.getConnetion();
+            Statement sentencia = conn.createStatement();
+
+            int numFilas = sentencia.executeUpdate(consultaSQL); 
+            consultaSQL = "DELETE FROM rutas WHERE id_ruta = " + codigo + ";";
+            numFilas += sentencia.executeUpdate(consultaSQL);
+            //System.out.println("up " + numFilas);  
+            return numFilas;
+        }
+        catch(SQLException e){
+            System.out.println(e); 
+            }
+        catch(Exception e){ 
+            System.out.println(e);
+        }
+        return -1;
+    }
+    
 }

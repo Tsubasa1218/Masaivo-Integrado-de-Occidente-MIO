@@ -44,5 +44,18 @@ public class ControladorRuta {
         String descripcion = daoRuta.obtenerDescripcion(ruta);
         return descripcion;
     }
+    public int modificarRuta(String nombre, String descripcion, ArrayList<String> estaciones, int codigo){
+        Ruta ruta = new Ruta(nombre, descripcion, estaciones);
+        
+        int numFilas = daoRuta.eliminarRuta(codigo);
+        System.out.println(nombre + " " + descripcion + " " + codigo);
+        System.out.println("Ruta eliminada");
+        numFilas += daoRuta.modificarRuta(ruta, codigo);
+        return numFilas;
+    }
     
+    public int eliminarRuta(int codigo){
+        int numFilas = daoRuta.eliminarRuta(codigo);
+        return numFilas;
+    }
 }

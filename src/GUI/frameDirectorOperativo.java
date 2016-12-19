@@ -125,6 +125,9 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
         estacionesEnRutaModificar = new javax.swing.JTextArea();
         nombreModificarRuta = new javax.swing.JComboBox();
         panelEliminarRuta = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        nombreEliminarRuta = new javax.swing.JComboBox();
+        aceptarEliminarRuta = new javax.swing.JButton();
         panelAsignarTurnos = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -339,8 +342,6 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("Encargado:");
 
-        ubicacionModificarEstacion.setBackground(new java.awt.Color(255, 255, 255));
-
         encargadoModificarEstacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Seleccion un empleado --" }));
 
         aceptarModificarEstacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
@@ -524,6 +525,7 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
         );
 
         panelCrearRuta1.setBackground(new java.awt.Color(255, 255, 255));
+        panelCrearRuta1.setPreferredSize(new java.awt.Dimension(605, 454));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setText("Nombre:");
@@ -575,15 +577,15 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
                             .addComponent(jLabel26))
                         .addGap(18, 18, 18)
                         .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                             .addGroup(panelCrearRuta1Layout.createSequentialGroup()
-                                .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(descripcionModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(estacionesModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(nombreModificarRuta, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(estacionesModificarRuta, javax.swing.GroupLayout.Alignment.LEADING, 0, 196, Short.MAX_VALUE)
+                                    .addComponent(descripcionModificarRuta, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(agregarEstacionRutaModificar))
-                            .addComponent(jScrollPane2)
-                            .addComponent(nombreModificarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(141, Short.MAX_VALUE))
+                                .addComponent(agregarEstacionRutaModificar)))))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         panelCrearRuta1Layout.setVerticalGroup(
             panelCrearRuta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,39 +611,61 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(aceptarModificarRuta)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelModificarRutaLayout = new javax.swing.GroupLayout(panelModificarRuta);
         panelModificarRuta.setLayout(panelModificarRutaLayout);
         panelModificarRutaLayout.setHorizontalGroup(
             panelModificarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGap(0, 625, Short.MAX_VALUE)
             .addGroup(panelModificarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelModificarRutaLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelCrearRuta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(panelCrearRuta1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE))
         );
         panelModificarRutaLayout.setVerticalGroup(
             panelModificarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
+            .addGap(0, 454, Short.MAX_VALUE)
             .addGroup(panelModificarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelModificarRutaLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(panelCrearRuta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(panelCrearRuta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        panelEliminarRuta.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setText("Nombre:");
+
+        aceptarEliminarRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
+        aceptarEliminarRuta.setBorder(null);
+        aceptarEliminarRuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarEliminarRutaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelEliminarRutaLayout = new javax.swing.GroupLayout(panelEliminarRuta);
         panelEliminarRuta.setLayout(panelEliminarRutaLayout);
         panelEliminarRutaLayout.setHorizontalGroup(
             panelEliminarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEliminarRutaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelEliminarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aceptarEliminarRuta)
+                    .addGroup(panelEliminarRutaLayout.createSequentialGroup()
+                        .addComponent(jLabel27)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreEliminarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(184, 184, 184))
         );
         panelEliminarRutaLayout.setVerticalGroup(
             panelEliminarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelEliminarRutaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelEliminarRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(nombreEliminarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(aceptarEliminarRuta)
+                .addContainerGap(285, Short.MAX_VALUE))
         );
 
         panelAsignarTurnos.setBackground(new java.awt.Color(255, 255, 255));
@@ -1139,6 +1163,7 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
         }else if(botonSeleccionado == 2){
             cl.show(panelContenedor, "Eliminar ruta");
             frameOpciones.setVisible(false);
+            cRuta.listaRutas(nombreEliminarRuta);
         }else if(botonSeleccionado == 3){
             cl.show(panelContenedor, "Eliminar bus");
             frameOpciones.setVisible(false);
@@ -1310,10 +1335,26 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
 
     private void agregarEstacionRutaModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarEstacionRutaModificarMouseClicked
         // TODO add your handling code here:
+        String estacion = estacionesModificarRuta.getSelectedItem().toString();
+        if (!estacion.equals("-- Seleccione una estacion --")) {
+            int index = estacionesModificarRuta.getSelectedIndex();
+            estaciones.add(estacion);
+            String contenidoTA = estacionesEnRutaModificar.getText();
+            contenidoTA += "\n" + estacion;
+            estacionesEnRutaModificar.setText(contenidoTA);
+
+            estacionesModificarRuta.removeItemAt(index);
+        }
     }//GEN-LAST:event_agregarEstacionRutaModificarMouseClicked
 
     private void aceptarModificarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarModificarRutaActionPerformed
         // TODO add your handling code here:
+        String nombre = nombreModificarRuta.getSelectedItem().toString();
+        String descripcion = descripcionModificarRuta.getText();
+        int codigo = cRuta.codigoDeNombre(nombre);
+        cRuta.modificarRuta(nombre, descripcion, estaciones, codigo);
+        estaciones.clear();
+        estacionesEnRutaModificar.setText("");
     }//GEN-LAST:event_aceptarModificarRutaActionPerformed
 
     private void nombreModificarRutaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nombreModificarRutaItemStateChanged
@@ -1325,13 +1366,27 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
             } else {
                 String descripcion = cRuta.obtenerDescripcion(nombreModificarRuta.getSelectedItem().toString());
                 descripcionModificarRuta.setText(descripcion);
-                //encargadoModificarEstacion.removeAllItems();
-                //cUsuario.empleadosNoEncargados(encargadoModificarEstacion);
+                estacionesModificarRuta.removeAllItems();
+                cEst.listarEstaciones(estacionesModificarRuta);
             }
         }catch(NullPointerException ex){
             System.out.println(ex);//nombreModificarEstacion.addItem("-- Seleccione una estacion --");
         }
     }//GEN-LAST:event_nombreModificarRutaItemStateChanged
+
+    private void aceptarEliminarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarEliminarRutaActionPerformed
+        // TODO add your handling code here:
+        String nombre = nombreEliminarRuta.getSelectedItem().toString();
+        if(!nombre.equals("-- Seleccione una ruta --")){
+            int codigo = cRuta.codigoDeNombre(nombre);
+            int numFilas = cRuta.eliminarRuta(codigo);
+            if (numFilas != -1 || numFilas != 0) {
+                JOptionPane.showMessageDialog(null, "Ruta eliminada!");
+                codigo = nombreEliminarRuta.getSelectedIndex();
+                nombreEliminarRuta.removeItemAt(codigo);
+            }
+        }
+    }//GEN-LAST:event_aceptarEliminarRutaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1376,6 +1431,7 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
     private javax.swing.JButton aceptarCrearBus;
     private javax.swing.JButton aceptarCrearRuta;
     private javax.swing.JButton aceptarEliminarBus;
+    private javax.swing.JButton aceptarEliminarRuta;
     private javax.swing.JButton aceptarModificarBus;
     private javax.swing.JButton aceptarModificarEstacion;
     private javax.swing.JButton aceptarModificarRuta;
@@ -1425,6 +1481,7 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1438,6 +1495,7 @@ public class frameDirectorOperativo extends javax.swing.JFrame {
     private javax.swing.JTextField nombreCrearEstacion;
     private javax.swing.JTextField nombreCrearRuta;
     private javax.swing.JComboBox nombreEliminarEstacion;
+    private javax.swing.JComboBox nombreEliminarRuta;
     private javax.swing.JComboBox nombreModificarEstacion;
     private javax.swing.JComboBox nombreModificarRuta;
     private javax.swing.JPanel panelAsignarTurnos;

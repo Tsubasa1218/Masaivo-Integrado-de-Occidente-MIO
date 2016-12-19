@@ -31,6 +31,7 @@ CREATE TABLE cargos(
 CREATE TABLE empleados(
 	cedula_empleado CHAR(10) PRIMARY KEY,
 	nombre_empleado VARCHAR(50) NOT NULL,
+	password VARCHAR(20) NOT NULL,
 	id_cargo SERIAL NOT NULL);
 
 CREATE TABLE estaciones(

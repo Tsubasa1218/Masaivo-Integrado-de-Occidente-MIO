@@ -129,7 +129,9 @@ INSERT INTO cargos VALUES(2, 'Director operativo');
 INSERT INTO cargos VALUES(3, 'Auxiliar de servicio al cliente');
 INSERT INTO cargos VALUES(4, 'Vendedor');
 INSERT INTO cargos VALUES(5, 'Director de estacion');
+INSERT INTO cargos VALUES(6, 'Gerente general');
 
+INSERT INTO empleados VALUES('0101010101', 'Obi Wan Kenobe', '12345', 6);
 INSERT INTO empleados VALUES('1111111111','Juan Suaza', '12345', 5);
 INSERT INTO empleados VALUES('1111111112','Juan Salazar', '12345', 5);
 INSERT INTO empleados VALUES('1111111113','Edgar Ceron', '12345', 5);

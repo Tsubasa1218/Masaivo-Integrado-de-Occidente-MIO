@@ -11,7 +11,7 @@ package Usuarios;
  */
 public class Usuario {
     
-    String codigo, nombre, turno_inicio, turno_fin, placa;
+    String codigo, nombre, turno_inicio, turno_fin, placa, password;
     int cargoCod, ruta_id;
     
     public Usuario(String codigo, String nombre, int cargoCod, String turno_inicio, String turno_fin, String placa, int ruta_id){
@@ -23,6 +23,15 @@ public class Usuario {
         this.placa = placa;
         this.ruta_id = ruta_id;
     }
+    
+    public Usuario(String nombre, String cedula, String password, int id_cargo){
+        this.codigo = cedula;
+        this.nombre = nombre;
+        this.password = password;
+        this.cargoCod = id_cargo;
+  
+    }
+    
     
     public Usuario(String nombre){
         this.nombre = nombre;

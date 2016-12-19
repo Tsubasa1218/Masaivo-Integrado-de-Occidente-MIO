@@ -50,6 +50,9 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
         nombreModificarUsuario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         aceptarModificarUsuario = new javax.swing.JButton();
+        buscarModificarEmpleado = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        passwordModificarEmpleado = new javax.swing.JTextField();
         panelInicialSlogan = new javax.swing.JPanel();
         slogan = new javax.swing.JLabel();
         auxiliaresPanel = new javax.swing.JPanel();
@@ -57,6 +60,7 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
         modificarUsuarioBoton = new javax.swing.JButton();
         resolverSolicitudPanel = new javax.swing.JPanel();
         tablaSolicitudesPanel = new javax.swing.JPanel();
+        resolverSolicitud = new javax.swing.JButton();
         panelFondo = new javax.swing.JPanel();
         banner = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -175,8 +179,10 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
 
         modificarUsuario.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Cédula:");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Nombre:");
 
         cedulaModificarUsuario.setEditable(false);
@@ -187,6 +193,11 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
         aceptarModificarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/aceptar.png"))); // NOI18N
         aceptarModificarUsuario.setBorder(null);
 
+        buscarModificarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/search.png"))); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("Contraseña:");
+
         javax.swing.GroupLayout modificarUsuarioLayout = new javax.swing.GroupLayout(modificarUsuario);
         modificarUsuario.setLayout(modificarUsuarioLayout);
         modificarUsuarioLayout.setHorizontalGroup(
@@ -194,23 +205,24 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
             .addGroup(modificarUsuarioLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel11)
                     .addGroup(modificarUsuarioLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jLabel6))
-                    .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(aceptarModificarUsuario)
-                        .addGroup(modificarUsuarioLayout.createSequentialGroup()
-                            .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modificarUsuarioLayout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                .addGroup(modificarUsuarioLayout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(14, 14, 14)))
-                            .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cedulaModificarUsuario)
-                                .addComponent(nombreModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addGroup(modificarUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(42, 42, 42)
+                        .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(modificarUsuarioLayout.createSequentialGroup()
+                                .addComponent(cedulaModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscarModificarEmpleado))
+                            .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(aceptarModificarUsuario)
+                                .addComponent(passwordModificarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         modificarUsuarioLayout.setVerticalGroup(
             modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,35 +232,34 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cedulaModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(cedulaModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarModificarEmpleado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(nombreModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombreModificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(modificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(passwordModificarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(aceptarModificarUsuario)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout frameModificarUsuarioLayout = new javax.swing.GroupLayout(frameModificarUsuario.getContentPane());
         frameModificarUsuario.getContentPane().setLayout(frameModificarUsuarioLayout);
         frameModificarUsuarioLayout.setHorizontalGroup(
             frameModificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 343, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
             .addGroup(frameModificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(frameModificarUsuarioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(modificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(modificarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         frameModificarUsuarioLayout.setVerticalGroup(
             frameModificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+            .addGap(0, 362, Short.MAX_VALUE)
             .addGroup(frameModificarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(frameModificarUsuarioLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(modificarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(modificarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelInicialSlogan.setBackground(new java.awt.Color(255, 255, 255));
@@ -324,17 +335,26 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
             .addGap(0, 349, Short.MAX_VALUE)
         );
 
+        resolverSolicitud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Imagenes/Botones/resolver.png"))); // NOI18N
+        resolverSolicitud.setBorder(null);
+
         javax.swing.GroupLayout resolverSolicitudPanelLayout = new javax.swing.GroupLayout(resolverSolicitudPanel);
         resolverSolicitudPanel.setLayout(resolverSolicitudPanelLayout);
         resolverSolicitudPanelLayout.setHorizontalGroup(
             resolverSolicitudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tablaSolicitudesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolverSolicitudPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resolverSolicitud)
+                .addContainerGap())
         );
         resolverSolicitudPanelLayout.setVerticalGroup(
             resolverSolicitudPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(resolverSolicitudPanelLayout.createSequentialGroup()
                 .addComponent(tablaSolicitudesPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 171, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resolverSolicitud)
+                .addGap(0, 126, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -463,6 +483,7 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
     private javax.swing.JButton auxiliaresBoton;
     private javax.swing.JPanel auxiliaresPanel;
     private javax.swing.JLabel banner;
+    private javax.swing.JLabel buscarModificarEmpleado;
     private javax.swing.JTextField cedulaModificarUsuario;
     private javax.swing.JTextArea descripcionSolucionar;
     private javax.swing.JLabel estacionSolucionar;
@@ -470,6 +491,7 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
     private javax.swing.JFrame frameSolucionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -488,6 +510,8 @@ public class frameDirectorEstacion extends javax.swing.JFrame {
     private javax.swing.JPanel panelContenedor;
     private javax.swing.JPanel panelFondo;
     private javax.swing.JPanel panelInicialSlogan;
+    private javax.swing.JTextField passwordModificarEmpleado;
+    private javax.swing.JButton resolverSolicitud;
     private javax.swing.JPanel resolverSolicitudPanel;
     private javax.swing.JButton resolverSolicitudesBoton;
     private javax.swing.JButton resolverSolucionarBoton;

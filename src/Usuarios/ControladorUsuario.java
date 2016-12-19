@@ -48,4 +48,16 @@ public class ControladorUsuario {
     public void empleadosNoEncargados(JComboBox cb){
         daoUsuario.empleadosNoEncargados(cb);
     }
+    
+    public int obtenerCodigoCargo(String cargo){
+        int id_cargo = daoUsuario.obtenerCodigoCargo(cargo);
+        return id_cargo;
+    }
+    
+    public int agregarEmpleado(String nombre, String cedula, String password, int id_cargo){
+        Usuario user = new Usuario(nombre, cedula, password, id_cargo);
+        
+        int numFilas = daoUsuario.agregarEmpleado(user);
+        return numFilas;
+    }
 }

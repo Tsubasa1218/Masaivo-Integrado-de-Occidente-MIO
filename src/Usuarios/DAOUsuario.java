@@ -140,4 +140,48 @@ public class DAOUsuario {
         }
     }
     
+    public int obtenerCodigoCargo(String nombre){
+        String consultaSQL = "SELECT id_cargo FROM cargos WHERE nombre_cargo LIKE '" + nombre + "';";
+        try{
+            Connection conn= fachada.getConnetion();
+            Statement sentencia = conn.createStatement();
+
+            ResultSet numFilas = sentencia.executeQuery(consultaSQL);  
+            //System.out.println("up " + numFilas);
+            int cargo = -1;
+            while(numFilas.next()){
+                cargo = numFilas.getInt("id_cargo");
+            }    
+            return cargo;
+        }
+        catch(SQLException e){
+            System.out.println(e); 
+            }
+        catch(Exception e){ 
+            System.out.println(e);
+        }
+        return -1;
+    }
+    
+    public int agregarEmpleado(Usuario user){
+        String consultaSQL = "INSERT INTO empleados VALUES('" + user.codigo + "', '" + user.nombre +
+                "', '" + user.password + "', " + user.cargoCod + ";";
+        try{
+            Connection conn= fachada.getConnetion();
+            Statement sentencia = conn.createStatement();
+
+            int numFilas = sentencia.executeUpdate(consultaSQL);  
+            //System.out.println("up " + numFilas);
+            return numFilas;
+            
+        }
+        catch(SQLException e){
+            System.out.println(e); 
+            }
+        catch(Exception e){ 
+            System.out.println(e);
+        }
+        return -1;
+    }
+    
 }

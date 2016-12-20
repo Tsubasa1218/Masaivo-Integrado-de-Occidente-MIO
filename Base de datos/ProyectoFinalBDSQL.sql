@@ -108,6 +108,7 @@ CREATE TABLE venta_tarjetas(
 	cedula_empleado CHAR(10) REFERENCES empleados(cedula_empleado),
 	pin_tarjeta INTEGER REFERENCES tarjetas(pin_tarjeta),
 	fecha_venta DATE NOT NULL,
+	id_estacion INTEGER REFERENCES estaciones(id_estacion),
 	CONSTRAINT pk_venta_tarjetas PRIMARY KEY(cedula_empleado, pin_tarjeta, fecha_venta));
 
 CREATE TABLE bus_abordado(
@@ -313,19 +314,19 @@ INSERT INTO rutas_asignadas VALUES('AAA132',4,'1111111137','7', '11',now());
 INSERT INTO rutas_asignadas VALUES('AAA132',5,'1111111147','11', '14',now());
 INSERT INTO rutas_asignadas VALUES('AAA132',1,'1111111132','14', '20',now());
 
-INSERT INTO venta_tarjetas VALUES('1111111158',1,'2016-11-12');
-INSERT INTO venta_tarjetas VALUES('1111111164',2,'2016-1-2');
-INSERT INTO venta_tarjetas VALUES('1111111159',3,'2016-3-12');
-INSERT INTO venta_tarjetas VALUES('1111111159',4,'2016-5-26');
-INSERT INTO venta_tarjetas VALUES('1111111163',5,'2016-5-30');
-INSERT INTO venta_tarjetas VALUES('1111111169',6,'2016-1-17');
-INSERT INTO venta_tarjetas VALUES('1111111158',7,'2016-11-19');
-INSERT INTO venta_tarjetas VALUES('1111111161',8,'2016-12-18');
-INSERT INTO venta_tarjetas VALUES('1111111169',9,'2016-6-9');
-INSERT INTO venta_tarjetas VALUES('1111111163',10,'2016-6-13');
-INSERT INTO venta_tarjetas VALUES('1111111165',11,'2016-8-25');
-INSERT INTO venta_tarjetas VALUES('1111111159',12,'2016-10-28');
-INSERT INTO venta_tarjetas VALUES('1111111169',13,'2016-12-31');
+INSERT INTO venta_tarjetas VALUES('1111111158',1,'2016-11-12', 1);
+INSERT INTO venta_tarjetas VALUES('1111111164',2,'2016-1-2', 2);
+INSERT INTO venta_tarjetas VALUES('1111111159',3,'2016-3-12', 3);
+INSERT INTO venta_tarjetas VALUES('1111111159',4,'2016-5-26', 4);
+INSERT INTO venta_tarjetas VALUES('1111111163',5,'2016-5-30', 5);
+INSERT INTO venta_tarjetas VALUES('1111111169',6,'2016-1-17', 1);
+INSERT INTO venta_tarjetas VALUES('1111111158',7,'2016-11-19', 2);
+INSERT INTO venta_tarjetas VALUES('1111111161',8,'2016-12-18', 3);
+INSERT INTO venta_tarjetas VALUES('1111111169',9,'2016-6-9', 4);
+INSERT INTO venta_tarjetas VALUES('1111111163',10,'2016-6-13', 5);
+INSERT INTO venta_tarjetas VALUES('1111111165',11,'2016-8-25', 1);
+INSERT INTO venta_tarjetas VALUES('1111111159',12,'2016-10-28', 2);
+INSERT INTO venta_tarjetas VALUES('1111111169',13,'2016-12-31', 3);
 
 INSERT INTO bus_abordado VALUES(1,5,now());
 INSERT INTO bus_abordado VALUES(1,2,now());

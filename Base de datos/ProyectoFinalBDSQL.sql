@@ -296,10 +296,10 @@ INSERT INTO solicitudes VALUES(2,'',FALSE,'Daños en los buses', 'El bus AAA111 
 INSERT INTO solicitudes VALUES(3,'',FALSE,'No hay sistema', 'Esperé 30 minutos para recargar por que no había sistema','1111111114');
 INSERT INTO solicitudes VALUES(4,'Se informa al vendedor de su actitud. Se remite a psicología',True,'Actitud del empleado', 'La actitud del empleado Augusto con cédula 1111111146 no es la adecuada','1111111112');
 
-INSERT INTO solicitudes_presentadas VALUES('0000000001', 1,1);
-INSERT INTO solicitudes_presentadas VALUES('0000000004', 2,4);
-INSERT INTO solicitudes_presentadas VALUES('0000000003', 4,3);
-INSERT INTO solicitudes_presentadas VALUES('0000000001', 1,2);
+INSERT INTO solicitudes_presentadas VALUES('0000000001', 1,1, current_date);
+INSERT INTO solicitudes_presentadas VALUES('0000000004', 2,4, current_date);
+INSERT INTO solicitudes_presentadas VALUES('0000000003', 4,3, current_date);
+INSERT INTO solicitudes_presentadas VALUES('0000000001', 1,2, current_date);
 
 INSERT INTO conduce VALUES('1111111133','AAA111',7, 11, now());
 INSERT INTO conduce VALUES('1111111135','AAA122',7, 11, now());

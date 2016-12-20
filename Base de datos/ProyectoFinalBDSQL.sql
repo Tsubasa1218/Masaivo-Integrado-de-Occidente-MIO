@@ -91,8 +91,8 @@ CREATE TABLE solicitudes_presentadas(
 CREATE TABLE conduce(
 	cedula_empleado CHAR(10) REFERENCES empleados(cedula_empleado),
 	placa_bus CHAR(6) REFERENCES buses(placa_bus),
-	turno_inicio VARCHAR(50) NOT NULL,
-	turno_fin VARCHAR(50) NOT NULL,
+	turno_inicio INTEGER NOT NULL,
+	turno_fin INTEGER NOT NULL,
 	fecha DATE NOT NULL,
 	CONSTRAINT pk_conduce PRIMARY KEY(cedula_empleado, placa_bus, turno_inicio, turno_fin, fecha));
 
@@ -100,8 +100,8 @@ CREATE TABLE rutas_asignadas(
 	placa_bus CHAR(6) REFERENCES buses(placa_bus),
 	id_ruta INTEGER REFERENCES rutas(id_ruta),
 	cedula_empleado CHAR(10) REFERENCES empleados(cedula_empleado),
-	turno_inicio VARCHAR(50) NOT NULL,
-	turno_fin VARCHAR(50) NOT NULL,
+	turno_inicio INTEGER NOT NULL,
+	turno_fin INTEGER NOT NULL,
 	fecha DATE NOT NULL,
 	CONSTRAINT pk_rutas_asignadas PRIMARY KEY(placa_bus, id_ruta, cedula_empleado, turno_inicio, turno_fin, fecha));
 
@@ -301,19 +301,19 @@ INSERT INTO solicitudes_presentadas VALUES('0000000004', 2,4);
 INSERT INTO solicitudes_presentadas VALUES('0000000003', 4,3);
 INSERT INTO solicitudes_presentadas VALUES('0000000001', 1,2);
 
-INSERT INTO conduce VALUES('1111111133','AAA111','7', '11', now());
-INSERT INTO conduce VALUES('1111111135','AAA122','7', '11', now());
-INSERT INTO conduce VALUES('1111111133','AAA111','11', '14', now());
-INSERT INTO conduce VALUES('1111111137','AAA132','7', '11', now());
-INSERT INTO conduce VALUES('1111111147','AAA132','11', '14', now());
-INSERT INTO conduce VALUES('1111111132','AAA132','14', '20', now());
+INSERT INTO conduce VALUES('1111111133','AAA111',7, 11, now());
+INSERT INTO conduce VALUES('1111111135','AAA122',7, 11, now());
+INSERT INTO conduce VALUES('1111111133','AAA111',1,14, now());
+INSERT INTO conduce VALUES('1111111137','AAA132', 7, 11, now());
+INSERT INTO conduce VALUES('1111111147','AAA132',11, 14, now());
+INSERT INTO conduce VALUES('1111111132','AAA132',14, 20, now());
 
-INSERT INTO rutas_asignadas VALUES('AAA111',1,'1111111133','7', '11',now());
-INSERT INTO rutas_asignadas VALUES('AAA122',2,'1111111135','7', '11',now());
-INSERT INTO rutas_asignadas VALUES('AAA111',3,'1111111133','11', '14',now());
-INSERT INTO rutas_asignadas VALUES('AAA132',4,'1111111137','7', '11',now());
-INSERT INTO rutas_asignadas VALUES('AAA132',5,'1111111147','11', '14',now());
-INSERT INTO rutas_asignadas VALUES('AAA132',1,'1111111132','14', '20',now());
+INSERT INTO rutas_asignadas VALUES('AAA111',1,'1111111133',7, 11,now());
+INSERT INTO rutas_asignadas VALUES('AAA122',2,'1111111135',7, 11,now());
+INSERT INTO rutas_asignadas VALUES('AAA111',3,'1111111133',11, 14,now());
+INSERT INTO rutas_asignadas VALUES('AAA132',4,'1111111137',7, 11,now());
+INSERT INTO rutas_asignadas VALUES('AAA132',5,'1111111147',11, 14,now());
+INSERT INTO rutas_asignadas VALUES('AAA132',1,'1111111132',14, 20,now());
 
 INSERT INTO venta_tarjetas VALUES('1111111158',1,'2016-11-12', 1);
 INSERT INTO venta_tarjetas VALUES('1111111164',2,'2016-1-2', 2);

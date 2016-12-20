@@ -1,4 +1,4 @@
-# Masivo-Integrado-de-Occidente-MIO
+# EL ARCHIVO FUENTE ULTIMO ES MIO.rar
 Proyecto de bases de datos.
 Interfaces terminadas:
 - Frame del auxiliar de ventas: MAURICIO

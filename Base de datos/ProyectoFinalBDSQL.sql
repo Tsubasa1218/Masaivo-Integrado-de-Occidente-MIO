@@ -85,6 +85,7 @@ CREATE TABLE solicitudes_presentadas(
 	cedula_pasajero CHAR(10) REFERENCES pasajeros(cedula_pasajero),
 	id_estacion INTEGER REFERENCES estaciones(id_estacion),
 	tiquete INTEGER REFERENCES solicitudes(tiquete),
+	fecha_solicitud DATE NOT NULL,
 	CONSTRAINT pk_solicitudes_presentadas PRIMARY KEY(cedula_pasajero, id_estacion, tiquete));
 
 CREATE TABLE conduce(

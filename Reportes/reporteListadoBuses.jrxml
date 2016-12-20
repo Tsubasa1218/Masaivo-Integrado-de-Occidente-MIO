@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8b73cf1c-1f48-486d-aea3-8eee2b0d87b9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="placa_bus" class="java.lang.String"/>
+	<field name="nombre_empleado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="121" splitType="Stretch">
+			<staticText>
+				<reportElement x="280" y="46" width="275" height="38" uuid="d8bb43d9-c035-4936-b1bf-1e826d8cd180"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte: Listado de buses articulados]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="280" height="115" uuid="4861debf-dd0b-4317-a862-8dcf36a703ff"/>
+				<imageExpression><![CDATA["C:\\Users\\Juan Suaza\\Documents\\NetBeansProjects\\MIO\\src\\GUI\\Imagenes\\logo_mio.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="455" y="84" width="100" height="20" uuid="f0c37694-346a-4e2b-9906-d196050e75ed"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="5" width="275" height="41" uuid="1a5fd221-cf28-4547-87a5-6180645fd18e"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Masivo Integrado de Occidente]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23">
+			<staticText>
+				<reportElement x="0" y="0" width="150" height="20" uuid="e31426d1-25bf-48cd-a303-48b9a7857907"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="2" width="175" height="20" uuid="f83dae0b-0b0f-4b49-b55c-0b133582e828"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre conductor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="150" height="20" uuid="4c9d3794-d4d4-43af-ba92-508c96f9f1ee"/>
+				<textFieldExpression><![CDATA[$F{placa_bus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="2" width="175" height="20" uuid="e36c6d28-4e79-4132-85ba-c48fb846134f"/>
+				<textFieldExpression><![CDATA[$F{nombre_empleado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="126" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="106" width="80" height="20" uuid="8b68c63d-827e-49c5-abad-ad4e063c5c89"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="106" width="40" height="20" uuid="1409a27e-8418-4f2a-918e-4ccbc581cdfb"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="2" width="300" height="124" uuid="287e60fa-f3a4-4b28-897f-f7303ad31706"/>
+				<imageExpression><![CDATA["C:\\Users\\Juan Suaza\\Documents\\NetBeansProjects\\MIO\\src\\GUI\\Imagenes\\logo-CaliDA--300x124.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>

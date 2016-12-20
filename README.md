@@ -1,4 +1,4 @@
-# Masaivo-Integrado-de-Occidente-MIO
+# Masivo-Integrado-de-Occidente-MIO
 Proyecto de bases de datos.
 Interfaces terminadas:
 - Frame del auxiliar de ventas: MAURICIO
